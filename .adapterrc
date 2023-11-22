@@ -1,0 +1,17 @@
+{
+    "buildPlatform": "web-mobile",
+    "orientation": "auto",
+    "enableSplash": true,
+    "exportChannels": ["AppLovin","IronSource","Mintegral","Tiktok","Unity"],
+    "injectOptions": {
+        "Mintegral": {
+            "body": "<script>window['gameStart']=()=>{};window['gameClose']=()=>{}</script>"
+        },
+        "Tiktok": {
+            "body": "<script>window['openAppStore']=function(){}</script>"
+        },
+        "Unity": {
+            "body": "<script>if(mraid.getState()==='loading'){mraid.addEventListener('ready',onSdkReady)}else{onSdkReady()}function viewableChangeHandler(viewable){if(viewable){showMyAd()}else{}}function onSdkReady(){mraid.addEventListener('viewableChange',viewableChangeHandler);if(mraid.isViewable()){showMyAd()}}function showMyAd(){}function onDownloadTest(){try{var userAgent=navigator.userAgent||navigator.vendor var url='https://apps.apple.com/us/app/spellai-ai-art-maker/id6446022340'var android='https://play.google.com/store/apps/details?id=com.ai.polyverse.spell'if(/android/i.test(userAgent)){url=android}mraid&&mraid.open(url)}catch(err){}}</script>"
+        }
+    }
+}

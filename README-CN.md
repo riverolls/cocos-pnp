@@ -1,10 +1,10 @@
 # Playable ads adapter
 
-Cocos广告试玩多渠道导出插件
+Cocos 广告试玩多渠道导出插件
 
 ## 插件使用
 
-如果只是使用，可以直接下载构建包，大版本区分2.x和3.x，目前已通过测试的版本是2.4.9、2.4.10、3.6.0，其他版本自行测试，有问题欢迎提issue或者解决提mr
+如果只是使用，可以直接下载构建包，大版本区分 2.x 和 3.x，目前已通过测试的版本是 2.4.9、2.4.10、3.6.0，其他版本自行测试，有问题欢迎提 issue 或者解决提 mr
 
 ### 下载地址
 
@@ -14,11 +14,11 @@ Cocos广告试玩多渠道导出插件
 
 ### 安装插件
 
-将下载好的插件解压后放到Cocos对应的插件文件夹：
+将下载好的插件解压后放到 Cocos 对应的插件文件夹：
 
-- 2.x的插件目录是项目根目录的packages
+- 2.x 的插件目录是项目根目录的 packages
 
-- 3.x的插件目录是项目根目录的extensions
+- 3.x 的插件目录是项目根目录的 extensions
 
 安装后即可使用（如果找不到插件的，可以选择重启一下项目）
 
@@ -60,52 +60,50 @@ Cocos广告试玩多渠道导出插件
 
 ```typescript
 // 源代码为
-window.advChannels = '{{__adv_channels_adapter__}}' // 防止rollup打包时tree-shaking省略掉该代码（dead code），占位符变量可挂载在全局而不失活
+window.advChannels = "{{__adv_channels_adapter__}}"; // 防止rollup打包时tree-shaking省略掉该代码（dead code），占位符变量可挂载在全局而不失活
 
 // 在Facebook渠道下代码会被替换为
-window.advChannels = 'Facebook'
+window.advChannels = "Facebook";
 ```
 
-2. 支持扩展注入脚本功能，可以在此配置每个渠道下特殊的业务代码，需要在根目录下创建 `.adapterrc`，里面以JSON格式进行编辑，其中里面的配置信息和案例如下：
+2. 支持扩展注入脚本功能，可以在此配置每个渠道下特殊的业务代码，需要在根目录下创建 `.adapterrc`，里面以 JSON 格式进行编辑，其中里面的配置信息和案例如下：
 
 ```typescript
 type TChannel =
-  | 'AppLovin'
-  | 'Facebook'
-  | 'Google'
-  | 'IronSource'
-  | 'Liftoff'
-  | 'Mintegral'
-  | 'Moloco'
-  | 'Pangle'
-  | 'Rubeex'
-  | 'Tiktok'
-  | 'Unity'
+  | "AppLovin"
+  | "Facebook"
+  | "Google"
+  | "IronSource"
+  | "Liftoff"
+  | "Mintegral"
+  | "Moloco"
+  | "Pangle"
+  | "Rubeex"
+  | "Tiktok"
+  | "Unity";
 
-type TPlatform =
-  | 'web-desktop'
-  | 'web-mobile';
+type TPlatform = "web-desktop" | "web-mobile";
 
-type TWebOrientations = 'portrait' | 'landscape' | 'auto'
+type TWebOrientations = "portrait" | "landscape" | "auto";
 
 type TAdapterRC = {
-  buildPlatform?: TPlatform // Cocos构建平台值
-  orientation?: TWebOrientations // Cocos构建设备方向值
-  exportChannels?: TChannel[] // 需要指定导出渠道，空或者不填则导出所有渠道
-  skipBuild?: boolean // 是否跳过构建流程，默认为false
-  enableSplash?: boolean // 是否设置自定义启动图，默认为false
+  buildPlatform?: TPlatform; // Cocos构建平台值
+  orientation?: TWebOrientations; // Cocos构建设备方向值
+  exportChannels?: TChannel[]; // 需要指定导出渠道，空或者不填则导出所有渠道
+  skipBuild?: boolean; // 是否跳过构建流程，默认为false
+  enableSplash?: boolean; // 是否设置自定义启动图，默认为false
   injectOptions?: {
     [key in TChannel]: {
-      head: string // 在html的head标签内尾部追加
-      body: string // 在html的body标签内，且在所有script前追加
-      sdkScript: string // 在渠道对应地方注入sdk脚本
-    }
-  },
-  tinify?: boolean // 是否开启 tinypng 压缩
-  tinifyApiKey?: string // tinypng api key
-}
+      head: string; // 在html的head标签内尾部追加
+      body: string; // 在html的body标签内，且在所有script前追加
+      sdkScript: string; // 在渠道对应地方注入sdk脚本
+    };
+  };
+  tinify?: boolean; // 是否开启 tinypng 压缩
+  tinifyApiKey?: string; // tinypng api key
+};
 ```
-
+.adapterrc 文件放在 cocoscreator 项目的根目录下
 `.adapterrc` 文件示例：
 
 ```json
@@ -206,4 +204,3 @@ pnpm build:3x
 <a href="https://github.com/ppgee/cocos-pnp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ppgee/cocos-pnp" />
 </a>
-

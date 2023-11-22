@@ -1,3 +1,4 @@
 node_modules/
 dist/
 !packages/playable-adapter-core/dist/
+packages/playable-ads-adapter/.DS_Store
